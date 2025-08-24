@@ -1,0 +1,386 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>David — Portfolio</title>
+  <meta name="description" content="Portfolio of david: Web development, school systems, payment platforms, business websites." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0f14;
+      --card: #121923;
+      --muted: #8ea2b1;
+      --text: #e9f1f7;
+      --accent: #4cc9f0;
+      --accent-2:#7df9ff;
+      --ring: rgba(76,201,240,.35);
+      --ok:#22c55e; --warn:#f59e0b;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      background: linear-gradient(180deg, #0b0f14 0%, #0e1520 60%, #0b0f14 100%);
+      color:var(--text);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    a{color:var(--accent); text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{width:min(1100px, 92%); margin-inline:auto}/* NAV */
+.nav{position:sticky; top:0; z-index:50; backdrop-filter:saturate(120%) blur(10px); background:rgba(11,15,20,.6); border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-inner{display:flex; align-items:center; justify-content:space-between; padding:12px 0}
+.brand{display:flex; align-items:center; gap:10px; font-weight:700}
+.brand-dot{width:10px; height:10px; border-radius:50%; background:linear-gradient(180deg,var(--accent),var(--accent-2))}
+.nav a{opacity:.9}
+.links{display:flex; gap:22px}
+.hamburger{display:none; flex-direction:column; gap:4px; cursor:pointer}
+.hamburger span{width:22px; height:2px; background:#dbe8f1}
+@media (max-width: 760px){
+  .links{display:none}
+  .hamburger{display:flex}
+  .mobile{display:none; position:absolute; inset:56px 0 auto 0; background:rgba(11,15,20,.95); border-bottom:1px solid rgba(255,255,255,.08)}
+  .mobile a{display:block; padding:14px 4%; border-top:1px solid rgba(255,255,255,.04)}
+  .mobile.show{display:block}
+}
+
+/* HERO */
+.hero{padding:84px 0 36px}
+.hero-grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:40px; align-items:center}
+.eyebrow{display:inline-block; padding:6px 10px; border:1px solid rgba(255,255,255,.12); border-radius:999px; font-size:12px; letter-spacing:.3px; color:var(--muted)}
+h1{font-size: clamp(28px, 5vw, 46px); line-height:1.15; margin:14px 0}
+.lead{color:#c5d5e1; font-size: clamp(15px, 2.2vw, 18px)}
+.cta{display:flex; gap:12px; margin-top:22px; flex-wrap:wrap}
+.btn{appearance:none; border:0; padding:12px 16px; border-radius:14px; background:var(--accent); color:#04121a; font-weight:700; cursor:pointer; box-shadow:var(--shadow)}
+.btn.secondary{background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.14)}
+.card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:18px; box-shadow:var(--shadow)}
+.hero .highlight{display:flex; gap:14px; align-items:center; padding:12px 14px; margin-top:16px; border-left:3px solid var(--accent); color:#cbe7f5; background: rgba(76,201,240,.06); border-radius:10px}
+.hero-illus{padding:18px}
+
+/* SECTIONS */
+section{padding:64px 0}
+section header{margin-bottom:22px}
+section h2{font-size: clamp(22px, 3.6vw, 32px); margin:0 0 6px}
+.sub{color:var(--muted); font-size:14px}
+
+/* ABOUT */
+.about{display:grid; grid-template-columns: 1.1fr .9fr; gap:26px}
+.about .card{padding:20px}
+.kpis{display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:12px; margin-top:10px}
+.kpi{padding:14px; text-align:center; border-radius:14px; background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0)); border:1px solid rgba(255,255,255,.06)}
+.kpi strong{display:block; font-size:20px}
+
+/* SKILLS */
+.skills-wrap{display:flex; flex-wrap:wrap; gap:10px}
+.chip{padding:8px 12px; border-radius:999px; background:#0d1a24; border:1px solid rgba(255,255,255,.08); color:#d7e7f2; font-size:13px}
+
+/* PROJECTS */
+.grid{display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:16px}
+.project{overflow:hidden}
+.project .thumb{aspect-ratio: 16/10; background:linear-gradient(180deg, #0d1a26, #0a1219); display:grid; place-items:center; color:#8fb8cd; font-weight:600}
+.project .body{padding:16px}
+.meta{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+.tag{font-size:12px; padding:6px 8px; background:#0b1720; border:1px solid rgba(255,255,255,.06); border-radius:999px; color:#b9d6e8}
+.actions{display:flex; gap:10px; margin-top:12px}
+
+/* SERVICES */
+.services{grid-template-columns: repeat(3, minmax(0,1fr))}
+.service{padding:18px}
+.service h3{margin:6px 0 8px}
+
+/* CONTACT */
+form{display:grid; gap:12px}
+input, textarea{width:100%; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:#0b141c; color:var(--text)}
+input:focus, textarea:focus{outline:2px solid var(--ring); border-color:transparent}
+textarea{min-height:120px}
+.contact-cards{display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:14px}
+.contact-cards a{display:block; padding:14px; border-radius:14px; border:1px solid rgba(255,255,255,.08); background:#0c1721}
+
+/* FOOTER */
+footer{padding:36px 0; border-top:1px solid rgba(255,255,255,.06); color:#a8c1d1}
+.social{display:flex; gap:14px}
+.social a{display:inline-flex; padding:8px; border-radius:10px; border:1px solid rgba(255,255,255,.08); background:#0c1721}
+
+/* Reveal animation */
+.reveal{opacity:0; transform:translateY(14px); transition: all .6s ease}
+.reveal.show{opacity:1; transform:none}
+
+@media (max-width: 980px){
+  .hero-grid{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr 1fr}
+  .services{grid-template-columns:1fr 1fr}
+  .contact-cards{grid-template-columns:1fr}
+}
+@media (max-width: 600px){
+  .grid{grid-template-columns:1fr}
+  .services{grid-template-columns:1fr}
+}
+
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="Home">
+        <span class="brand-dot"></span>
+        <span>David(Codex)</span>
+      </a>
+      <div class="links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-controls="mobile" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div id="mobile" class="mobile" role="dialog" aria-label="Mobile Menu">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>  <!-- HERO -->  <main id="top" class="container hero">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Web Developer • Designer • Problem Solver</span>
+        <h1>Hi, I’m <span style="color:var(--accent)">David(codex)</span>. I build modern, secure, and fast websites that help schools and businesses grow.</h1>
+        <p class="lead">From school fee payment systems to business portfolios, I deliver clean UI, secure logins, and smooth user experiences.</p>
+        <div class="cta">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn secondary" href="#contact">Contact Me</a>
+        </div>
+        <div class="highlight">
+          <span>✔</span>
+          <span><strong>Available</strong> for freelance and full-time opportunities.</span>
+        </div>
+      </div>
+      <div class="hero-illus card">
+        <img alt="Preview mockup" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop" />
+      </div>
+    	</div>
+  </main>  <!-- ABOUT -->  <section id="about" class="container reveal">
+    <header>
+      <h2>About Me</h2>
+      <p class="sub">Keep it short, clear, and focused on what you deliver.</p>
+    </header>
+    <div class="about">
+      <article class="card">
+        <p>
+          I’m a full‑stack web developer based in <em>[Your City]</em>. I build responsive, user‑friendly websites with secure authentication and clean dashboards. My work includes school systems, payment platforms, and business websites.
+        </p>
+        <p>
+          I care about performance, accessibility, and maintainable code. I also bring a touch of cybersecurity awareness to every build.
+        </p>
+      </article>
+      <aside>
+        <div class="kpis">
+          <div class="kpi"><strong>3+</strong><span>Years experience</span></div>
+          <div class="kpi"><strong>20+</strong><span>Projects done</span></div>
+          <div class="kpi"><strong>100%</strong><span>Client satisfaction</span></div>
+        </div>
+      </aside>
+    </div>
+  </section>  <!-- SKILLS -->  <section id="skills" class="container reveal">
+    <header>
+      <h2>Skills & Tools</h2>
+      <p class="sub">Group skills by what you use most.</p>
+    </header>
+    <div class="skills-wrap">
+      <span class="chip">HTML</span>
+      <span class="chip">CSS</span>
+      <span class="chip">JavaScript</span>
+      <span class="chip">React</span>
+      <span class="chip">PHP</span>
+      <span class="chip">MySQL</span>
+      <span class="chip">Firebase (Auth, Firestore, Storage)</span>
+      <span class="chip">Git & GitHub</span>
+      <span class="chip">Nmap (Basics)</span>
+      <span class="chip">Canva</span>
+    </div>
+  </section>  <!-- PROJECTS -->  <section id="projects" class="container reveal">
+    <header>
+      <h2>Selected Projects</h2>
+      <p class="sub">Add 3–6 projects you’re proud of. Keep each card concise.</p>
+    </header>
+    <div class="grid">
+      <!-- Project 1 -->
+      <article class="card project">
+        <div class="thumb">Screenshot / Mockup</div>
+        <div class="body">
+          <h3>Nggita Secondary School Fee System</h3>
+          <p>A secure platform for student registration, online payments, and payment history tracking. Admin panel supports content uploads.</p>
+          <div class="meta">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">PHP</span>
+            <span class="tag">Firebase</span>
+          </div>
+          <div class="actions">
+            <a class="btn secondary" href="#" target="_blank" rel="noopener">Live Demo</a>
+            <a class="btn" href="#" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </article>
+      <!-- Project 2 -->
+      <article class="card project">
+        <div class="thumb">Screenshot / Mockup</div>
+        <div class="body">
+          <h3>Business Portfolio Website</h3>
+          <p>Fast, SEO‑friendly portfolio for a local brand. Clean UI, responsive design, and contact integrations.</p>
+          <div class="meta">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+          <div class="actions">
+            <a class="btn secondary" href="#" target="_blank" rel="noopener">Live Demo</a>
+            <a class="btn" href="#" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </article>
+      <!-- Project 3 -->
+      <article class="card project">
+        <div class="thumb">Screenshot / Mockup</div>
+        <div class="body">
+          <h3>Login & OTP Verification</h3>
+          <p>Registration and login system with OTP and role‑based access. Built with clean, secure practices.</p>
+          <div class="meta">
+            <span class="tag">PHP</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">JS</span>
+          </div>
+          <div class="actions">
+            <a class="btn secondary" href="#" target="_blank" rel="noopener">Live Demo</a>
+            <a class="btn" href="#" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>  <!-- SERVICES -->  <section id="services" class="container reveal">
+    <header>
+      <h2>Services</h2>
+      <p class="sub">What I can do for you or your business.</p>
+    </header>
+    <div class="grid services">
+      <article class="card service">
+        <h3>Website Design & Development</h3>
+        <p>Modern, responsive sites with clean UI and fast load times.</p>
+      </article>
+      <article class="card service">
+        <h3>School & Payment Systems</h3>
+        <p>Registration, fees, dashboards, history tracking, and admin tools.</p>
+      </article>
+      <article class="card service">
+        <h3>Secure Auth & Dashboards</h3>
+        <p>Login/registration, OTP, role‑based access, and activity logs.</p>
+      </article>
+    </div>
+  </section>  <!-- CONTACT -->  <section id="contact" class="container reveal">
+    <header>
+      <h2>Contact</h2>
+      <p class="sub">Let’s build something great together.</p>
+    </header>
+    <div class="grid" style="grid-template-columns:1.1fr .9fr; gap:18px">
+      <form id="contactForm" class="card" onsubmit="return sendMailto(event)">
+        <div style="padding:18px">
+        <br><br>
+          <div style="display:grid; gap:12px">
+            <input required name="name" placeholder="Your name" />
+            <input required type="email" name="email" placeholder="Your email" />
+            <textarea required name="message" placeholder="Tell me about your project..."></textarea>
+            <button class="btn" type="submit">Send Message</button>
+            <p class="sub">This form opens your email app with a prefilled message.</p>
+          </div>
+        </div>
+      </form><br><br>
+      <div class="contact-cards">
+        <a href="mailto:daudajoseph506@example.com" class="card">📧 Email: daudajoseph506@gmail.com</a>
+        <a href="https://wa.me/0812322mmasslz7444?text=Hi%20Your%20Name%2C%20I%20found%20your%20portfolio%20and%20I%27d%20like%20to%20work%20with%20you" class="card" target="_blank" rel="noopener">🟢 WhatsApp: +2348123227444</a>
+        <a href="#" class="card" target="_blank" rel="noopener">💼 LinkedIn / GitHub</a>
+      <a href="https://www.facebook.com/graphic.design.808845">Facebook</a>
+      </div>
+    </div>
+  </section>  <footer>
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap">
+      <small>© <span id="2023"></span> David j ndahi. All rights reserved.</small>
+      <div class="social">
+        <a href="#" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.74.08-.74 1.2.09 1.84 1.23 1.84 1.23 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.39 1.24-3.23-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.67 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.23 0 4.63-2.8 5.66-5.48 5.96.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.82.58A12 12 0 0 0 12 .5Z"/></svg>
+        </a>
+        <a href="#" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.67H9.35V9h3.42v1.56h.05c.48-.91 1.64-1.86 3.37-1.86 3.6 0 4.27 2.37 4.27 5.45v6.3zM5.34 7.43A2.06 2.06 0 1 1 5.33 3.3a2.06 2.06 0 0 1 .01 4.12zM7.13 20.45H3.55V9h3.58v11.45z"/></svg>
+        </a>
+        <a href="mailto:daudajoseph506@gmail.com" aria-label="Email" title="Email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 13 2 6.76V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v.76L12 13Zm0 2 10-6.24V18a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-9.24L12 15Z"/></svg>
+        </a>
+        <a href="https://wa.me/08123227444" aria-label="WhatsApp" title="WhatsApp" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.5 11.5 0 0 0 3.1 18.9L2 22l3.3-1a11.5 11.5 0 0 0 5.2 1.3h.1A11.5 11.5 0 0 0 20.5 3.5Zm-8.9 17.5h-.1a9.5 9.5 0 0 1-4.8-1.3l-.3-.2-2 .6.7-1.9-.2-.3A9.5 9.5 0 1 1 11.6 21Zm5.4-7.1c-.3-.1-1.7-.9-1.9-1s-.4-.1-.6.1c-.2.3-.7.9-.9 1-.1.2-.3.2-.6.1s-1.2-.4-2.3-1.4A8.7 8.7 0 0 1 8.6 11c-.2-.3 0-.5.2-.6l.3-.4.2-.4c.1-.1 0-.3 0-.4l-.9-2.1c-.3-.7-.6-.6-.8-.6h-.6c-.2 0-.4.2-.6.4-.2.3-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.6 2.6 3.9 3.6 2.4 1 2.4.7 2.8.7.4 0 1.4-.5 1.6-1s.2-1 .2-1 .1-.1-.3-.2Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer><button id="toTop" aria-label="Back to top" title="Back to top" style="position:fixed; right:14px; bottom:14px; padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.1); background:#0c1721; color:#cfe8f6; display:none">▲</button>
+
+  <script>
+    // Mobile nav toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobile = document.getElementById('mobile');
+    hamburger?.addEventListener('click', () => {
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', String(!expanded));
+      mobile.classList.toggle('show');
+    });
+    mobile?.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=> mobile.classList.remove('show')));
+
+    // Smooth scroll for in-page anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        const el = id && document.querySelector(id);
+        if(el){
+          e.preventDefault();
+          el.scrollIntoView({behavior:'smooth'});
+        }
+      });
+    });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => entry.target.classList.toggle('show', entry.isIntersecting))
+    }, {threshold:.14});
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Back to top
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', () => {
+      toTop.style.display = window.scrollY > 600 ? 'block' : 'none';
+    });
+    toTop.addEventListener('click', () => document.querySelector('#top').scrollIntoView({behavior:'smooth'}));
+
+    // Contact form -> mailto
+    function sendMailto(e){
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const name = encodeURIComponent(fd.get('name'));
+      const email = encodeURIComponent(fd.get('email'));
+      const message = encodeURIComponent(fd.get('message'));
+      const subject = `New inquiry from ${fd.get('name')}`;
+      const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`;
+      window.location.href = `mailto:daudajoseph506@gmsil.com?subject=${subject}&body=${body}`;
+      return false;
+    }
+
+    // Year
+    document.getElementById('2025').textContent = new Date().getFullYear();
+  </script></body>
+</html>
